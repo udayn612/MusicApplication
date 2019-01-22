@@ -39,7 +39,7 @@ public class MusicController {
         return responseEntity;
     }
 
-    @GetMapping("music")
+    @GetMapping("musics")
     public ResponseEntity<?> getAllMusic()
     {
         return new ResponseEntity<List<Music>>(musicService.getAllMusic(),HttpStatus.OK);
@@ -80,6 +80,12 @@ public class MusicController {
     }
 
 
+    @GetMapping("music/{trackId}")
+    public ResponseEntity<?> findById(@PathVariable("trackId")int trackId)
+    {
+        return new ResponseEntity(musicService.findById(trackId),HttpStatus.OK);
+
+    }
 
 
 

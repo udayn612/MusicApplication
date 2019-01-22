@@ -14,5 +14,7 @@ public interface MusicService {
 
     public List<Music> deleteMusic(int trackId);
 
+    public Music findById(int trackId);
+
 
 }
