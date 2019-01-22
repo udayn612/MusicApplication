@@ -1,3 +1,5 @@
-SpringMVC
+SpringBoot
 
 Practice 
+
+SpringInitializer
