@@ -13,13 +13,14 @@ import java.util.Optional;
 @Service
 public class MusicServiceImpl implements MusicService {
 
-    MusicRepository musicRepository;
+    private MusicRepository musicRepository;
 
     @Autowired
     public MusicServiceImpl(MusicRepository musicRepository) {
         this.musicRepository = musicRepository;
     }
 
+    //this method savesmusic
     @Override
     public Music saveMusic(Music music) throws TrackAlreadyFoundException {
 
@@ -37,20 +38,25 @@ public class MusicServiceImpl implements MusicService {
        return savedMusic;
     }
 
+    //get all music
     @Override
     public List<Music> getAllMusic() {
         return musicRepository.findAll();
     }
 
+    //update comment
     @Override
-    public Music updateMusic(Music music,int trackId) throws TrackNotFoundException
+    public Music updateMusic(String comment,int trackId) throws TrackNotFoundException
     {
         if(!musicRepository.existsById(trackId))
         {
             throw new TrackNotFoundException("track to update doesnt exists try posting first");
         }
 
-        Music updateMusic=musicRepository.save(music);
+        Music updateMusic=musicRepository.findById(trackId).get();
+        updateMusic.setTrackComment(comment);
+        musicRepository.save(updateMusic);
+
 
         if(updateMusic==null)
         {
@@ -59,6 +65,7 @@ public class MusicServiceImpl implements MusicService {
         return updateMusic;
     }
 
+    //remove music based on trackID
     @Override
     public List<Music> deleteMusic(int trackId) throws TrackNotFoundException
     {
@@ -72,6 +79,7 @@ public class MusicServiceImpl implements MusicService {
         return musicRepository.findAll();
     }
 
+    //find music based on ID
     @Override
     public Optional<Music> findById(int trackId) throws TrackNotFoundException {
         if(!musicRepository.existsById(trackId))
@@ -89,6 +97,7 @@ public class MusicServiceImpl implements MusicService {
 
     }
 
+    //find music based on name
     @Override
    public List<Music> findByTrackName(String trackName)
     {

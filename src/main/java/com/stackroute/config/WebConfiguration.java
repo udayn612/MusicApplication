@@ -14,9 +14,15 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import static springfox.documentation.builders.PathSelectors.regex;
 
+//@Configuration is an analog for xml file. Such classes are sources of bean definitions
+// by defining methods with the @Bean annotation
 @Configuration
+//Swagger 2 is enabled through the @EnableSwagger2 annotation.
 @EnableSwagger2
 public class WebConfiguration extends WebMvcConfigurationSupport {
+
+//    When JavaConfig encounters such a method, it will execute that method and register
+//    the return value as a bean within a BeanFactory
     @Bean
     public Docket productApi() {
         return new Docket(DocumentationType.SWAGGER_2)
@@ -26,6 +32,7 @@ public class WebConfiguration extends WebMvcConfigurationSupport {
                 .build()
                 .apiInfo(metaData());
     }
+    //it will intialize all the important data
     private ApiInfo metaData() {
         return new ApiInfoBuilder()
                 .title("Spring Boot REST API")

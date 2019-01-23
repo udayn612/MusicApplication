@@ -2,7 +2,7 @@
 
     public class TrackNotFoundException extends Exception{
 
-        public String message;
+        private String message;
 
 
         public TrackNotFoundException() {

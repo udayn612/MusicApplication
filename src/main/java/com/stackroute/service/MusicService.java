@@ -13,7 +13,7 @@ public interface MusicService {
 
     public List<Music> getAllMusic();
 
-    public Music updateMusic(Music music,int trackId) throws TrackNotFoundException;
+    public Music updateMusic(String comment,int trackId) throws TrackNotFoundException;
 
     public List<Music> deleteMusic(int trackId) throws TrackNotFoundException;
 

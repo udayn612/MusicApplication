@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface MusicRepository extends JpaRepository<Music,Integer> {
 
-
+    //this is used to select trackByName
     @Query(value = "Select m from Music m  where m.trackName = ?1")
     public List<Music> findByTrackName(String trackName);
 }
