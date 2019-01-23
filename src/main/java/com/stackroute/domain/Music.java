@@ -1,9 +1,17 @@
 package com.stackroute.domain;
 
+import lombok.Data;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
+@Data
+
 public class Music {
 
     @Id
@@ -11,45 +19,11 @@ public class Music {
     String trackName;
     String trackComment;
 
-    public Music(int trackId, String trackName, String trackComment) {
-        this.trackId = trackId;
-        this.trackName = trackName;
-        this.trackComment = trackComment;
+
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer()
+    {
+        return new PropertySourcesPlaceholderConfigurer();
     }
 
-    @Override
-    public String toString() {
-        return "Music{" +
-                "trackId=" + trackId +
-                ", trackName='" + trackName + '\'' +
-                ", trackComment='" + trackComment + '\'' +
-                '}';
-    }
-
-    public Music() {
-    }
-
-    public int getTrackId() {
-        return trackId;
-    }
-
-    public void setTrackId(int trackId) {
-        this.trackId = trackId;
-    }
-
-    public String getTrackName() {
-        return trackName;
-    }
-
-    public void setTrackName(String trackName) {
-        this.trackName = trackName;
-    }
-
-    public String getTrackComment() {
-        return trackComment;
-    }
-
-    public void setTrackComment(String trackComment) {
-        this.trackComment = trackComment;
-    }
 }
